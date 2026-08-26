@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exclusão de Conta — MEI em Dia</title>
+<style>
+  :root {
+    --color-bg: #f7f7f5;
+    --color-surface: #ffffff;
+    --color-text: #1f2328;
+    --color-text-muted: #52585f;
+    --color-border: #e2e4e8;
+    --color-accent: #0a6847;
+    --color-accent-soft: #e6f2ec;
+    --color-notice-bg: #fff8e6;
+    --color-notice-border: #e8c766;
+    --max-width: 780px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-bg: #14161a;
+      --color-surface: #1c1f24;
+      --color-text: #e8eaed;
+      --color-text-muted: #a8adb5;
+      --color-border: #2c3036;
+      --color-accent: #4fd1a5;
+      --color-accent-soft: #16302a;
+      --color-notice-bg: #2b2412;
+      --color-notice-border: #6b5a1f;
+    }
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    font-size: 16px;
+  }
+
+  header {
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding: 2rem 1.25rem 1.5rem;
+  }
+
+  header .header-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  header p.eyebrow {
+    margin: 0 0 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  h1 {
+    margin: 0 0 0.5rem;
+    font-size: 1.7rem;
+    line-height: 1.3;
+  }
+
+  header .updated {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+  }
+
+  main {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 1.75rem 1.25rem 4rem;
+  }
+
+  .summary-card {
+    background: var(--color-accent-soft);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1.1rem 1.25rem;
+    margin: 0 0 2rem;
+    font-size: 1rem;
+  }
+
+  .summary-card strong { color: var(--color-accent); }
+
+  section {
+    margin: 0 0 2.25rem;
+  }
+
+  section h2 {
+    font-size: 1.2rem;
+    border-bottom: 2px solid var(--color-accent-soft);
+    padding-bottom: 0.4rem;
+    margin: 0 0 0.9rem;
+  }
+
+  section h3 {
+    font-size: 1.02rem;
+    margin: 1.3rem 0 0.6rem;
+  }
+
+  p { margin: 0 0 0.9rem; }
+
+  ul, ol { margin: 0 0 0.9rem; padding-left: 1.3rem; }
+  li { margin-bottom: 0.5rem; }
+
+  a { color: var(--color-accent); }
+
+  .note {
+    background: var(--color-notice-bg);
+    border: 1px solid var(--color-notice-border);
+    border-radius: 8px;
+    padding: 0.9rem 1.1rem;
+    font-size: 0.92rem;
+    margin: 0 0 0.9rem;
+  }
+
+  .email-box {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--color-accent-soft);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 0.5rem 0.9rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.98rem;
+  }
+
+  .steps {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1.1rem 1.25rem 1.25rem;
+  }
+
+  .steps ol { margin-bottom: 0; }
+
+  footer {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 1.25rem 3rem;
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.5rem;
+  }
+
+  footer p { margin: 0 0 0.3rem; }
+
+  @media (max-width: 480px) {
+    h1 { font-size: 1.4rem; }
+    section h2 { font-size: 1.1rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <p class="eyebrow">MEI em Dia</p>
+    <h1>Exclusão de Conta</h1>
+    <p class="updated">Última atualização: 26 de agosto de 2026</p>
+  </div>
+</header>
+
+<main>
+
+  <div class="summary-card">
+    <strong>Resumo em uma frase:</strong> você pode excluir sua conta diretamente
+    dentro do aplicativo, ou solicitar a exclusão por e-mail se preferir — nos
+    dois casos, o que é removido é a sua conta de acesso (e-mail e senha); os
+    dados do seu negócio ficam apenas no seu aparelho e não existem em nenhum
+    servidor do MEI em Dia.
+  </div>
+
+  <section id="excluir-no-app">
+    <h2>1. Excluir a conta diretamente no aplicativo (recomendado)</h2>
+    <p>
+      A forma mais rápida de excluir sua conta é dentro do próprio aplicativo,
+      sem precisar entrar em contato com ninguém:
+    </p>
+    <div class="steps">
+      <ol>
+        <li>Abra o MEI em Dia e faça login normalmente.</li>
+        <li>Toque em <strong>Meu MEI</strong>.</li>
+        <li>Acesse <strong>Configurações → Conta</strong>.</li>
+        <li>Toque em <strong>Excluir conta</strong> e confirme.</li>
+      </ol>
+    </div>
+    <p>
+      A exclusão remove imediatamente sua conta de acesso (e-mail e senha)
+      junto ao Firebase Authentication, o serviço usado pelo MEI em Dia para
+      autenticação. Depois de excluída, não é possível entrar novamente com
+      esse e-mail sem criar uma conta nova.
+    </p>
+  </section>
+
+  <section id="excluir-por-email">
+    <h2>2. Solicitar a exclusão por e-mail (fora do aplicativo)</h2>
+    <p>
+      Se preferir, ou se não tiver mais acesso ao aplicativo, você também pode
+      solicitar a exclusão da sua conta enviando um e-mail para:
+    </p>
+    <p><span class="email-box">revisao.meiemdia@gmail.com</span></p>
+    <div class="note">
+      <strong>Importante:</strong> envie o pedido a partir do mesmo endereço de
+      e-mail cadastrado na sua conta do MEI em Dia (o e-mail usado para fazer
+      login no aplicativo). Isso é necessário para identificar corretamente
+      qual conta deve ser excluída.
+    </div>
+    <p>
+      Ao receber a solicitação, a exclusão da conta de acesso junto ao Firebase
+      Authentication é feita manualmente pelo desenvolvedor, associada ao
+      e-mail informado.
+    </p>
+  </section>
+
+  <section id="o-que-e-excluido">
+    <h2>3. O que é excluído e o que não é</h2>
+    <ul>
+      <li>
+        <strong>É excluído:</strong> sua conta de acesso (e-mail e senha) no
+        Firebase Authentication, usada apenas para controlar o login no
+        aplicativo.
+      </li>
+      <li>
+        <strong>Não é excluído por este processo, porque não existe em
+        nenhum servidor do MEI em Dia:</strong> os dados do seu negócio —
+        clientes, movimentações financeiras, contas a receber e a pagar,
+        orçamentos, compromissos de agenda e as informações de Meu MEI. Esses
+        dados são armazenados exclusivamente no armazenamento local do
+        aplicativo, no seu próprio aparelho, e o desenvolvedor não tem acesso
+        a eles em momento algum.
+      </li>
+    </ul>
+  </section>
+
+  <section id="dados-locais">
+    <h2>4. Como remover também os dados armazenados no aparelho</h2>
+    <p>
+      Como os dados do seu negócio ficam apenas no seu aparelho, excluir a
+      conta (seção 1 ou 2) não os apaga. Para removê-los, você pode:
+    </p>
+    <ul>
+      <li>desinstalar o aplicativo do seu aparelho; ou</li>
+      <li>
+        apagar os dados do aplicativo pelas configurações do sistema
+        operacional (por exemplo, em Android: Configurações → Aplicativos →
+        MEI em Dia → Armazenamento → Apagar dados).
+      </li>
+    </ul>
+    <p>
+      Qualquer uma dessas ações remove permanentemente os dados do negócio
+      salvos localmente. Essa remoção não pode ser desfeita pelo
+      desenvolvedor, já que esses dados nunca existiram em nenhum servidor.
+    </p>
+  </section>
+
+  <section id="contato">
+    <h2>5. Dúvidas</h2>
+    <p>
+      Dúvidas sobre este processo podem ser enviadas para
+      <span class="email-box">revisao.meiemdia@gmail.com</span>.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <p>Desenvolvedor: Edvaldo Dalmolin</p>
+  <p>Última atualização: 26 de agosto de 2026</p>
+</footer>
+
+</body>
+</html>
