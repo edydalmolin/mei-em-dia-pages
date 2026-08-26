@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Política de Privacidade — MEI em Dia</title>
+<style>
+  :root {
+    --color-bg: #f7f7f5;
+    --color-surface: #ffffff;
+    --color-text: #1f2328;
+    --color-text-muted: #52585f;
+    --color-border: #e2e4e8;
+    --color-accent: #0a6847;
+    --color-accent-soft: #e6f2ec;
+    --color-notice-bg: #fff8e6;
+    --color-notice-border: #e8c766;
+    --max-width: 780px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-bg: #14161a;
+      --color-surface: #1c1f24;
+      --color-text: #e8eaed;
+      --color-text-muted: #a8adb5;
+      --color-border: #2c3036;
+      --color-accent: #4fd1a5;
+      --color-accent-soft: #16302a;
+      --color-notice-bg: #2b2412;
+      --color-notice-border: #6b5a1f;
+    }
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    font-size: 16px;
+  }
+
+  header {
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding: 2rem 1.25rem 1.5rem;
+  }
+
+  header .header-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  header p.eyebrow {
+    margin: 0 0 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  h1 {
+    margin: 0 0 0.5rem;
+    font-size: 1.7rem;
+    line-height: 1.3;
+  }
+
+  header .updated {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+  }
+
+  main {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 1.75rem 1.25rem 4rem;
+  }
+
+  .summary-card {
+    background: var(--color-accent-soft);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1.1rem 1.25rem;
+    margin: 0 0 2rem;
+    font-size: 1rem;
+  }
+
+  .summary-card strong { color: var(--color-accent); }
+
+  nav.toc {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1rem 1.25rem 1.1rem;
+    margin: 0 0 2rem;
+  }
+
+  nav.toc p {
+    margin: 0 0 0.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  nav.toc ol {
+    margin: 0;
+    padding-left: 1.2rem;
+    columns: 1;
+    font-size: 0.92rem;
+  }
+
+  nav.toc li { margin-bottom: 0.25rem; }
+
+  nav.toc a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  nav.toc a:hover { color: var(--color-accent); text-decoration: underline; }
+
+  section {
+    margin: 0 0 2.25rem;
+  }
+
+  section h2 {
+    font-size: 1.2rem;
+    border-bottom: 2px solid var(--color-accent-soft);
+    padding-bottom: 0.4rem;
+    margin: 0 0 0.9rem;
+  }
+
+  section h3 {
+    font-size: 1.02rem;
+    margin: 1.3rem 0 0.6rem;
+  }
+
+  p { margin: 0 0 0.9rem; }
+
+  ul { margin: 0 0 0.9rem; padding-left: 1.3rem; }
+  li { margin-bottom: 0.4rem; }
+
+  a { color: var(--color-accent); }
+
+  .note {
+    background: var(--color-notice-bg);
+    border: 1px solid var(--color-notice-border);
+    border-radius: 8px;
+    padding: 0.9rem 1.1rem;
+    font-size: 0.92rem;
+    margin: 0 0 0.9rem;
+  }
+
+  .placeholder {
+    background: var(--color-notice-bg);
+    border-radius: 4px;
+    padding: 0.05rem 0.4rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.9em;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 0.9rem;
+    font-size: 0.92rem;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 0.5rem 0.6rem;
+    border: 1px solid var(--color-border);
+    vertical-align: top;
+  }
+
+  th {
+    background: var(--color-accent-soft);
+    font-weight: 600;
+  }
+
+  footer {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 1.25rem 3rem;
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.5rem;
+  }
+
+  .back-to-top {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 480px) {
+    h1 { font-size: 1.4rem; }
+    section h2 { font-size: 1.1rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <p class="eyebrow">MEI em Dia</p>
+    <h1>Política de Privacidade</h1>
+    <p class="updated">Última atualização: <span class="placeholder">26 de agosto de 2026</span></p>
+  </div>
+</header>
+
+<main>
+
+  <div class="summary-card">
+    <strong>Resumo em uma frase:</strong> os dados do seu negócio (clientes, financeiro,
+    orçamentos, agenda e Meu MEI) ficam armazenados somente no seu aparelho. O MEI em Dia
+    usa uma conta de e-mail e senha apenas para controlar o acesso ao aplicativo —
+    não existe nuvem própria e os dados do seu negócio nunca são enviados ao desenvolvedor.
+  </div>
+
+  <nav class="toc" aria-label="Sumário">
+    <p>Nesta página</p>
+    <ol>
+      <li><a href="#quem-somos">Quem somos</a></li>
+      <li><a href="#conta-autenticacao">Conta e autenticação</a></li>
+      <li><a href="#dados-locais">Dados armazenados localmente</a></li>
+      <li><a href="#desinstalacao">Desinstalação, troca ou perda do aparelho</a></li>
+      <li><a href="#assinatura">Assinatura e pagamento</a></li>
+      <li><a href="#whatsapp">Cobrança por WhatsApp</a></li>
+      <li><a href="#assistente">Meu Assistente</a></li>
+      <li><a href="#nao-fazemos">O que o MEI em Dia não faz</a></li>
+      <li><a href="#permissoes">Permissões do aparelho</a></li>
+      <li><a href="#direitos">Seus direitos</a></li>
+      <li><a href="#criancas">Crianças</a></li>
+      <li><a href="#alteracoes">Alterações nesta política</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ol>
+  </nav>
+
+  <section id="quem-somos">
+    <h2>1. Quem somos</h2>
+    <p>
+      O MEI em Dia é um aplicativo para organização financeira e comercial de
+      microempreendedores individuais (MEIs) que trabalham sozinhos.
+      <span class="placeholder">Edvaldo Dalmolin</span> é
+      responsável pelo aplicativo e por esta política.
+    </p>
+    <p>Contato: <span class="placeholder">revisao.meiemdia@gmail.com</span>.</p>
+  </section>
+
+  <section id="conta-autenticacao">
+    <h2>2. Conta e autenticação</h2>
+    <p>
+      O MEI em Dia exige uma conta para uso, criada com e-mail e senha por meio do
+      <strong>Firebase Authentication</strong> (serviço do Google). Essa conta serve
+      <strong>somente</strong> para controlar quem pode abrir o aplicativo — ela não
+      está conectada aos dados do seu negócio.
+    </p>
+    <ul>
+      <li>
+        O e-mail e a senha são enviados diretamente ao Firebase Authentication para
+        criar a conta, autenticar o login e processar a recuperação de senha. O
+        desenvolvedor não vê nem armazena sua senha em nenhum momento; o Firebase
+        Authentication a armazena de forma segura (hash), fora do alcance do
+        desenvolvedor.
+      </li>
+      <li>
+        O aplicativo não usa Firestore, Realtime Database ou qualquer banco de dados
+        remoto. Não existe sincronização, backup em nuvem ou cópia dos dados do seu
+        negócio fora do seu aparelho.
+      </li>
+      <li>
+        O único vínculo entre a conta e o aparelho é técnico: um identificador de
+        sessão mantido pelo SDK do Firebase Authentication, necessário para manter
+        você conectado. Nenhum dado do negócio (clientes, financeiro, agenda,
+        orçamentos, Meu MEI) é associado, replicado ou enviado à sua conta.
+      </li>
+      <li>
+        Você pode excluir sua conta a qualquer momento diretamente no aplicativo, em
+        <strong>Meu MEI → Configurações → Conta → Excluir conta</strong>. Excluir a
+        conta remove seu acesso de login junto ao Firebase Authentication. Isso
+        <strong>não</strong> apaga os dados do seu negócio salvos localmente no
+        aparelho — eles continuam lá até você excluí-los manualmente ou desinstalar
+        o aplicativo (ver seção 3).
+      </li>
+      <li>Sair da conta (logout) também não afeta os dados locais do seu negócio.</li>
+    </ul>
+
+    <h3>2.1 Desbloqueio por biometria (opcional)</h3>
+    <p>
+      Em <strong>Meu MEI → Configurações → Conta e segurança → Segurança ao
+      abrir</strong>, você pode escolher usar a biometria do seu aparelho (impressão
+      digital, Face ID ou Touch ID) para desbloquear o aplicativo em vez de digitar
+      e-mail e senha a cada abertura. Esse recurso é:
+    </p>
+    <ul>
+      <li>
+        <strong>Opcional</strong> — o padrão é solicitar e-mail e senha a cada
+        abertura ("Login completo"); você escolhe ativar a biometria quando quiser,
+        e pode desativá-la a qualquer momento na mesma tela.
+      </li>
+      <li>
+        <strong>Usado somente para desbloquear o aplicativo</strong> — a biometria
+        nunca cria, substitui ou é usada para autenticar sua conta junto ao Firebase
+        Authentication; ela apenas libera a tela do app já com sua conta conectada.
+      </li>
+      <li>
+        <strong>Processada inteiramente pelo seu aparelho</strong> — o reconhecimento
+        da digital ou do rosto acontece no hardware/sistema operacional do seu
+        celular. <strong>O MEI em Dia não recebe, não processa e não armazena
+        nenhum dado biométrico seu</strong> — nem a impressão digital, nem a imagem
+        do rosto, nem qualquer informação derivada delas. O aplicativo só recebe uma
+        resposta do sistema (reconhecido, cancelado ou não reconhecido).
+      </li>
+      <li>
+        Se a biometria falhar ou for cancelada, você pode tentar novamente ou optar
+        por "Entrar com e-mail e senha" a qualquer momento.
+      </li>
+    </ul>
+  </section>
+
+  <section id="dados-locais">
+    <h2>3. Dados armazenados localmente</h2>
+    <p>Ao usar o aplicativo, você pode registrar, por sua própria conta:</p>
+    <ul>
+      <li>nome, telefone e observações de clientes;</li>
+      <li>entradas, saídas, contas a receber e contas a pagar;</li>
+      <li>orçamentos e seus status;</li>
+      <li>compromissos de agenda (atendimentos, recebimentos, pagamentos, lembretes);</li>
+      <li>nome do negócio, nome do titular, CNPJ opcional e faturamento de abertura (Meu MEI);</li>
+      <li>perguntas feitas ao Meu Assistente durante o uso.</li>
+    </ul>
+    <p>
+      Esses dados são armazenados exclusivamente em um banco de dados local (SQLite)
+      dentro do armazenamento privado do aplicativo no seu aparelho. O desenvolvedor
+      não tem acesso a esses dados, não os recebe em nenhum servidor e não pode
+      consultá-los remotamente. Esses dados <strong>não</strong> têm relação com sua
+      conta de e-mail/senha: eles não são associados ao seu identificador de conta
+      nem enviados ao Firebase.
+    </p>
+  </section>
+
+  <section id="desinstalacao">
+    <h2>4. Desinstalação, troca ou perda do aparelho</h2>
+    <div class="note">
+      <strong>Não existe backup automático em nuvem para os dados do seu negócio.</strong>
+      Se você desinstalar o aplicativo, formatar o aparelho, perdê-lo ou trocá-lo sem
+      transferir os dados manualmente, os registros do seu negócio podem ser perdidos
+      de forma definitiva.
+    </div>
+    <p>
+      Sua conta de e-mail/senha, por outro lado, é mantida pelo Firebase
+      Authentication e não depende do aparelho: reinstalar o aplicativo em outro
+      aparelho e entrar novamente com o mesmo e-mail e senha recupera o acesso à
+      conta, mas <strong>não</strong> recupera os dados do negócio, que permanecem
+      apenas no aparelho original.
+    </p>
+  </section>
+
+  <section id="assinatura">
+    <h2>5. Assinatura e pagamento</h2>
+    <p>
+      O MEI em Dia é um aplicativo pago por assinatura mensal recorrente. A compra, a
+      renovação, o cancelamento e todos os dados de pagamento (cartão, forma de
+      pagamento, endereço de cobrança) são processados inteiramente pela loja de
+      aplicativos do seu aparelho — <strong>Google Play</strong> (Android) ou
+      <strong>App Store</strong> (iOS). O desenvolvedor não recebe, não armazena e
+      não tem acesso a número de cartão, dados bancários ou qualquer informação
+      financeira de pagamento.
+    </p>
+    <p>
+      O aplicativo guarda localmente, apenas para não travar você em uma
+      instabilidade momentânea de conexão com a loja, um pequeno registro técnico com
+      a identificação do produto assinado e o horário da última verificação
+      bem-sucedida junto à loja. Esse registro não sai do seu aparelho e não é
+      compartilhado com o desenvolvedor.
+    </p>
+    <p>
+      Cancelar ou deixar a assinatura expirar não apaga os dados do seu negócio nem
+      sua conta de acesso: eles continuam disponíveis e voltam a ficar acessíveis
+      assim que a assinatura é renovada ou restaurada.
+    </p>
+  </section>
+
+  <section id="whatsapp">
+    <h2>6. Cobrança por WhatsApp</h2>
+    <p>
+      Quando você escolhe cobrar um cliente, o aplicativo prepara um número de
+      telefone e uma mensagem e abre o WhatsApp (ou o navegador, se o WhatsApp não
+      estiver instalado) para você revisar e decidir se envia. <strong>O envio nunca
+      é automático</strong> — você sempre revisa a mensagem antes de decidir
+      enviá-la. A partir do momento em que o WhatsApp (ou navegador) é aberto, o
+      tratamento dos dados segue a política de privacidade do respectivo serviço,
+      que não é controlado pelo MEI em Dia.
+    </p>
+  </section>
+
+  <section id="assistente">
+    <h2>7. Meu Assistente</h2>
+    <p>
+      O Meu Assistente responde perguntas sobre os dados já existentes no seu
+      aparelho (por exemplo, "quanto eu ganhei este mês?"). Ele funciona inteiramente
+      no aparelho, sem conexão com serviços de inteligência artificial externos e sem
+      enviar suas perguntas ou dados para qualquer servidor. As perguntas e respostas
+      de uma sessão não são salvas: elas existem apenas enquanto a tela está aberta.
+    </p>
+  </section>
+
+  <section id="nao-fazemos">
+    <h2>8. O que o MEI em Dia não faz</h2>
+    <ul>
+      <li>não usa os dados da sua conta de e-mail/senha para nenhuma finalidade além de controlar o acesso ao aplicativo;</li>
+      <li>não sincroniza os dados do seu negócio entre aparelhos ou com a nuvem;</li>
+      <li>não usa Firestore, Realtime Database, banco de dados remoto ou backend próprio para os dados do negócio — o único uso de Firebase é a autenticação de conta descrita na seção 2;</li>
+      <li>não contém analytics, rastreamento de comportamento ou identificadores de publicidade;</li>
+      <li>não exibe anúncios;</li>
+      <li>não compartilha nem vende seus dados pessoais ou comerciais a terceiros;</li>
+      <li>não usa inteligência artificial generativa conectada à internet;</li>
+      <li>não recebe, não processa e não armazena nenhum dado biométrico (seção 2.1) — o reconhecimento da digital/rosto é feito inteiramente pelo seu aparelho.</li>
+    </ul>
+  </section>
+
+  <section id="permissoes">
+    <h2>9. Permissões do aparelho</h2>
+    <p>
+      O MEI em Dia não solicita permissões de câmera, microfone, localização,
+      contatos ou armazenamento de mídia. A única permissão relacionada a segurança
+      é a de biometria (<code>USE_BIOMETRIC</code> no Android; a autorização de Face
+      ID no iOS), solicitada apenas se e quando você ativa o desbloqueio por
+      biometria (seção 2.1) — ela não dá ao aplicativo acesso a nenhum dado
+      biométrico, apenas permite exibir a tela de confirmação do próprio sistema
+      operacional. A única integração externa além da autenticação (seção 2) é a
+      abertura do WhatsApp/navegador por ação explícita sua, descrita na seção 6.
+    </p>
+  </section>
+
+  <section id="direitos">
+    <h2>10. Seus direitos</h2>
+    <ul>
+      <li>
+        <strong>Dados do negócio:</strong> como ficam no seu próprio aparelho, você
+        pode a qualquer momento editar ou excluir clientes, movimentações,
+        orçamentos e compromissos diretamente no aplicativo, respeitando as regras
+        de integridade descritas em cada módulo, ou apagar todos os dados
+        desinstalando o aplicativo.
+      </li>
+      <li>
+        <strong>Conta de acesso:</strong> você pode excluir sua conta de e-mail/senha
+        a qualquer momento em <strong>Meu MEI → Configurações → Conta → Excluir
+        conta</strong> (seção 2). Essa é a forma de solicitar a remoção da sua conta
+        junto ao Firebase Authentication, sem depender de contato com o
+        desenvolvedor.
+      </li>
+    </ul>
+    <p>
+      Como o desenvolvedor não recebe nem armazena os dados do seu negócio, não há
+      um pedido de exclusão a ser feito a nós além do descrito acima — a exceção é
+      qualquer dado de pagamento, cuja exclusão deve ser solicitada diretamente ao
+      Google Play ou à Apple, conforme a loja usada.
+    </p>
+  </section>
+
+  <section id="criancas">
+    <h2>11. Crianças</h2>
+    <p>
+      O MEI em Dia é destinado a maiores de 18 anos que administram um pequeno
+      negócio. O aplicativo não é direcionado a crianças e não coleta
+      intencionalmente dados de menores.
+    </p>
+  </section>
+
+  <section id="alteracoes">
+    <h2>12. Alterações nesta política</h2>
+    <p>
+      Esta política pode ser atualizada quando o aplicativo mudar de forma relevante
+      para a privacidade (por exemplo, se um backup em nuvem opcional for adicionado
+      no futuro). A data de "última atualização" no topo desta página será revisada
+      a cada mudança.
+    </p>
+  </section>
+
+  <section id="contato">
+    <h2>13. Contato</h2>
+    <p>
+      Dúvidas sobre esta política podem ser enviadas para
+      <span class="placeholder">revisao.meiemdia@gmail.com</span>.
+    </p>
+    <a class="back-to-top" href="#top">↑ Voltar ao topo</a>
+  </section>
+
+</main>
+
+<footer>
+  <p>MEI em Dia — aplicativo para organização financeira e comercial de MEIs.</p>
+</footer>
+
+</body>
+</html>
