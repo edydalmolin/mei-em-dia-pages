@@ -171,39 +171,66 @@
   <div class="header-inner">
     <p class="eyebrow">MEI em Dia</p>
     <h1>Exclusão de Conta</h1>
-    <p class="updated">Última atualização: 26 de agosto de 2026</p>
+    <p class="updated">Última atualização: 28 de setembro de 2026</p>
   </div>
 </header>
 
 <main>
 
   <div class="summary-card">
-    <strong>Resumo em uma frase:</strong> você pode excluir sua conta diretamente
-    dentro do aplicativo, ou solicitar a exclusão por e-mail se preferir — nos
-    dois casos, o que é removido é a sua conta de acesso (e-mail e senha); os
-    dados do seu negócio ficam apenas no seu aparelho e não existem em nenhum
-    servidor do MEI em Dia.
+    <strong>Resumo em uma frase:</strong> ao excluir a conta pelo aplicativo, sua
+    conta de acesso (e-mail e senha) é removida do Firebase Authentication e os
+    dados do seu negócio salvos neste aparelho são apagados; pelo e-mail, é
+    removida apenas a conta de acesso. Os dados do negócio ficam somente no
+    aparelho — no servidor existem apenas a conta de acesso e registros mínimos de
+    acesso (período gratuito e, se houver, Premium Cortesia), que são mantidos.
   </div>
 
   <section id="excluir-no-app">
     <h2>1. Excluir a conta diretamente no aplicativo (recomendado)</h2>
     <p>
-      A forma mais rápida de excluir sua conta é dentro do próprio aplicativo,
-      sem precisar entrar em contato com ninguém:
+      A forma mais rápida e completa de excluir sua conta é dentro do próprio
+      aplicativo, sem precisar entrar em contato com ninguém:
     </p>
     <div class="steps">
       <ol>
         <li>Abra o MEI em Dia e faça login normalmente.</li>
-        <li>Toque em <strong>Meu MEI</strong>.</li>
-        <li>Acesse <strong>Configurações → Conta</strong>.</li>
+        <li>Na tela Início, toque em <strong>Meu MEI</strong>.</li>
+        <li>Em <strong>Configurações</strong>, vá até <strong>Conta e segurança</strong>.</li>
         <li>Toque em <strong>Excluir conta</strong> e confirme.</li>
       </ol>
     </div>
+    <p>Ao confirmar, nesta ordem:</p>
+    <ol>
+      <li>
+        sua conta de acesso (e-mail e senha) é excluída permanentemente do
+        Firebase Authentication, o serviço usado pelo MEI em Dia para
+        autenticação;
+      </li>
+      <li>
+        somente depois disso, os dados do seu negócio salvos
+        <strong>neste aparelho</strong> para essa conta são apagados — clientes,
+        movimentações financeiras, contas a receber e a pagar, orçamentos,
+        compromissos de agenda, Meu MEI, estoque e registros locais de NFS-e —,
+        junto com as cópias locais do status da assinatura e do período
+        gratuito;
+      </li>
+      <li>você sai da conta no aplicativo.</li>
+    </ol>
+    <div class="note">
+      <strong>Importante:</strong> se o sistema pedir que você entre novamente
+      antes de excluir (medida de segurança do Firebase para sessões antigas),
+      nada é excluído — nem a conta, nem os dados do aparelho. Entre de novo e
+      repita a exclusão.
+    </div>
     <p>
-      A exclusão remove imediatamente sua conta de acesso (e-mail e senha)
-      junto ao Firebase Authentication, o serviço usado pelo MEI em Dia para
-      autenticação. Depois de excluída, não é possível entrar novamente com
-      esse e-mail sem criar uma conta nova.
+      Depois de excluída, não é possível entrar novamente com esse e-mail sem
+      criar uma conta nova. A limpeza vale apenas para o aparelho em que a
+      exclusão foi feita: se você usou a mesma conta em outro aparelho, os dados
+      daquele aparelho continuam nele (veja a seção 4). A imagem da logo do
+      negócio, se você tiver escolhido uma, e preferências do próprio aparelho
+      (como a opção de desbloqueio) não fazem parte dessa limpeza; elas são
+      removidas ao desinstalar o aplicativo ou apagar os dados dele (seção 4).
     </p>
   </section>
 
@@ -221,37 +248,56 @@
       qual conta deve ser excluída.
     </div>
     <p>
-      Ao receber a solicitação, a exclusão da conta de acesso junto ao Firebase
-      Authentication é feita manualmente pelo desenvolvedor, associada ao
-      e-mail informado.
+      Ao receber a solicitação, o desenvolvedor exclui manualmente a sua conta de
+      acesso junto ao Firebase Authentication, associada ao e-mail informado.
+    </p>
+    <p>
+      <strong>A diferença em relação à exclusão pelo aplicativo:</strong> pelo
+      e-mail, o desenvolvedor não tem como apagar os dados do seu negócio, porque
+      eles existem apenas no seu aparelho e o desenvolvedor nunca teve acesso a
+      eles. Para removê-los, siga a seção 4. Os registros mínimos de acesso
+      descritos na seção 3 são tratados da mesma forma nos dois casos.
     </p>
   </section>
 
   <section id="o-que-e-excluido">
-    <h2>3. O que é excluído e o que não é</h2>
+    <h2>3. O que é excluído e o que é mantido</h2>
     <ul>
       <li>
-        <strong>É excluído:</strong> sua conta de acesso (e-mail e senha) no
-        Firebase Authentication, usada apenas para controlar o login no
-        aplicativo.
+        <strong>Excluído (pelo aplicativo ou por e-mail):</strong> sua conta de
+        acesso (e-mail e senha) no Firebase Authentication, usada apenas para
+        controlar o login no aplicativo.
       </li>
       <li>
-        <strong>Não é excluído por este processo, porque não existe em
-        nenhum servidor do MEI em Dia:</strong> os dados do seu negócio —
-        clientes, movimentações financeiras, contas a receber e a pagar,
-        orçamentos, compromissos de agenda e as informações de Meu MEI. Esses
-        dados são armazenados exclusivamente no armazenamento local do
-        aplicativo, no seu próprio aparelho, e o desenvolvedor não tem acesso
-        a eles em momento algum.
+        <strong>Excluído somente pela exclusão no aplicativo, e somente no
+        aparelho usado:</strong> os dados do seu negócio salvos localmente
+        (seção 1). Esses dados nunca são enviados a servidores do MEI em Dia.
+      </li>
+      <li>
+        <strong>Mantido no Cloud Firestore:</strong> os registros mínimos de
+        acesso associados ao identificador da sua conta (UID) — a data de início
+        do período gratuito de 14 dias, sua duração e a indicação de uso e, se
+        você recebeu o benefício, o registro do Premium Cortesia (indicação do
+        benefício, motivo e data da concessão). Esses registros não contêm dados
+        do seu negócio, e-mail, cartão ou dados de pagamento. O aplicativo não
+        tem permissão para apagá-los: o registro do período gratuito é mantido
+        de propósito, para que o período não possa ser reiniciado.
+      </li>
+      <li>
+        <strong>Assinatura:</strong> excluir a conta não cancela uma assinatura
+        feita pela loja. A assinatura e os dados de pagamento são gerenciados
+        pelo Google Play ou pela App Store; para cancelar a cobrança, use a loja
+        em que você assinou.
       </li>
     </ul>
   </section>
 
   <section id="dados-locais">
-    <h2>4. Como remover também os dados armazenados no aparelho</h2>
+    <h2>4. Como remover dados que ficaram no aparelho</h2>
     <p>
-      Como os dados do seu negócio ficam apenas no seu aparelho, excluir a
-      conta (seção 1 ou 2) não os apaga. Para removê-los, você pode:
+      Use esta seção se você pediu a exclusão por e-mail, se usou a mesma conta
+      em outro aparelho ou se quiser remover também a logo e as preferências do
+      aparelho. Você pode:
     </p>
     <ul>
       <li>desinstalar o aplicativo do seu aparelho; ou</li>
@@ -262,9 +308,10 @@
       </li>
     </ul>
     <p>
-      Qualquer uma dessas ações remove permanentemente os dados do negócio
-      salvos localmente. Essa remoção não pode ser desfeita pelo
-      desenvolvedor, já que esses dados nunca existiram em nenhum servidor.
+      Qualquer uma dessas ações remove permanentemente os dados do aplicativo
+      salvos naquele aparelho. Essa remoção não pode ser desfeita pelo
+      desenvolvedor, já que os dados do negócio nunca são enviados a servidores
+      do MEI em Dia e não existe backup em nuvem deles.
     </p>
   </section>
 
@@ -280,7 +327,7 @@
 
 <footer>
   <p>Desenvolvedor: Edvaldo Dalmolin</p>
-  <p>Última atualização: 26 de agosto de 2026</p>
+  <p>Última atualização: 28 de setembro de 2026</p>
 </footer>
 
 </body>
