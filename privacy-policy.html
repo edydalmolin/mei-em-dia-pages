@@ -211,7 +211,7 @@
   <div class="header-inner">
     <p class="eyebrow">MEI em Dia</p>
     <h1>Política de Privacidade</h1>
-    <p class="updated">Última atualização: <span class="placeholder">26 de agosto de 2026</span></p>
+    <p class="updated">Última atualização: <span class="placeholder">28 de setembro de 2026</span></p>
   </div>
 </header>
 
@@ -219,7 +219,8 @@
 
   <div class="summary-card">
     <strong>Resumo em uma frase:</strong> os dados do seu negócio (clientes, financeiro,
-    orçamentos, agenda e Meu MEI) ficam armazenados somente no seu aparelho. O MEI em Dia
+    orçamentos, agenda, estoque, registros de notas fiscais e Meu MEI) ficam armazenados
+    somente no seu aparelho. O MEI em Dia
     usa uma conta de e-mail e senha apenas para controlar o acesso ao aplicativo —
     não existe nuvem própria e os dados do seu negócio nunca são enviados ao desenvolvedor.
   </div>
@@ -233,6 +234,7 @@
       <li><a href="#desinstalacao">Desinstalação, troca ou perda do aparelho</a></li>
       <li><a href="#assinatura">Assinatura e pagamento</a></li>
       <li><a href="#whatsapp">Cobrança por WhatsApp</a></li>
+      <li><a href="#nfse">Notas fiscais de serviço (NFS-e)</a></li>
       <li><a href="#assistente">Meu Assistente</a></li>
       <li><a href="#nao-fazemos">O que o MEI em Dia não faz</a></li>
       <li><a href="#permissoes">Permissões do aparelho</a></li>
@@ -271,9 +273,10 @@
         desenvolvedor.
       </li>
       <li>
-        O aplicativo não usa Firestore, Realtime Database ou qualquer banco de dados
-        remoto. Não existe sincronização, backup em nuvem ou cópia dos dados do seu
-        negócio fora do seu aparelho.
+        Os dados do seu negócio nunca vão para a nuvem: não existe sincronização,
+        backup em nuvem ou cópia dos dados do seu negócio fora do seu aparelho. O
+        único dado guardado em servidor além da conta é o controle de acesso descrito
+        na seção 2.2 (datas do período gratuito e, se houver, o Premium Cortesia).
       </li>
       <li>
         O único vínculo entre a conta e o aparelho é técnico: um identificador de
@@ -284,10 +287,10 @@
       <li>
         Você pode excluir sua conta a qualquer momento diretamente no aplicativo, em
         <strong>Meu MEI → Configurações → Conta → Excluir conta</strong>. Excluir a
-        conta remove seu acesso de login junto ao Firebase Authentication. Isso
-        <strong>não</strong> apaga os dados do seu negócio salvos localmente no
-        aparelho — eles continuam lá até você excluí-los manualmente ou desinstalar
-        o aplicativo (ver seção 3).
+        conta remove seu acesso de login junto ao Firebase Authentication e apaga os
+        dados do seu negócio salvos neste aparelho para essa conta. O registro do
+        período gratuito (seção 2.2) é mantido, apenas com as datas, para que o
+        período não seja reiniciado.
       </li>
       <li>Sair da conta (logout) também não afeta os dados locais do seu negócio.</li>
     </ul>
@@ -323,17 +326,52 @@
         por "Entrar com e-mail e senha" a qualquer momento.
       </li>
     </ul>
+
+    <h3>2.2 Período gratuito e Premium Cortesia</h3>
+    <p>
+      Para oferecer 14 dias gratuitos sem cartão — válidos em qualquer aparelho em
+      que você entrar com a mesma conta — o aplicativo guarda no
+      <strong>Cloud Firestore</strong> (serviço do Google, no mesmo projeto do
+      Firebase Authentication), associado ao identificador da sua conta (UID):
+    </p>
+    <ul>
+      <li>a data e hora de início do período gratuito (definida pelo servidor) e a sua duração (14 dias);</li>
+      <li>se aplicável, o benefício <strong>Premium Cortesia</strong> concedido pelo desenvolvedor (por exemplo, a testadores fundadores), com o motivo e a data da concessão.</li>
+    </ul>
+    <p>
+      Não são guardados nesse registro dados do seu negócio, e-mail, cartão,
+      informações de pagamento, token de compra ou dados bancários. Uma cópia dessas
+      datas também fica no seu aparelho para que o acesso funcione sem internet. Só
+      você (a sua conta) pode ler o seu registro; o aplicativo não pode alterar as
+      datas nem conceder o Premium Cortesia a si mesmo.
+    </p>
   </section>
 
   <section id="dados-locais">
     <h2>3. Dados armazenados localmente</h2>
     <p>Ao usar o aplicativo, você pode registrar, por sua própria conta:</p>
     <ul>
-      <li>nome, telefone e observações de clientes;</li>
+      <li>
+        dados dos seus clientes: nome, telefone, observações e, se você informar,
+        CPF ou CNPJ, e-mail e município — cadastrados por você para a gestão dos seus
+        clientes e, quando você quiser, para preparar as informações de uma NFS-e;
+      </li>
       <li>entradas, saídas, contas a receber e contas a pagar;</li>
       <li>orçamentos e seus status;</li>
       <li>compromissos de agenda (atendimentos, recebimentos, pagamentos, lembretes);</li>
-      <li>nome do negócio, nome do titular, CNPJ opcional e faturamento de abertura (Meu MEI);</li>
+      <li>itens de estoque e suas movimentações;</li>
+      <li>
+        dados do seu negócio (Meu MEI), quando informados: nome do negócio, nome do
+        titular, CNPJ, endereço, telefone, e-mail, município, inscrição municipal,
+        logo, padrões de orçamento e faturamento de abertura — nenhum deles é
+        obrigatório;
+      </li>
+      <li>
+        registros de NFS-e que você mesmo informar depois de emitir a nota no ambiente
+        oficial (seção 7): número, código de verificação, chave de acesso, cliente,
+        orçamento relacionado, descrição do serviço, valor, competência, data de
+        emissão, status e observações;
+      </li>
       <li>perguntas feitas ao Meu Assistente durante o uso.</li>
     </ul>
     <p>
@@ -401,8 +439,49 @@
     </p>
   </section>
 
+  <section id="nfse">
+    <h2>7. Notas fiscais de serviço (NFS-e)</h2>
+    <p>
+      <strong>Nesta versão, o MEI em Dia não emite a NFS-e.</strong> A emissão
+      acontece no ambiente oficial da NFS-e Padrão Nacional (Emissor Nacional). O
+      aplicativo apenas ajuda você a organizar os dados da nota e a registrar, depois,
+      a nota que você emitiu.
+    </p>
+    <ul>
+      <li>
+        <strong>Preparar a nota:</strong> você pode reunir os dados do tomador
+        (cliente) e do serviço, inclusive a partir de um orçamento aprovado, e copiá-los
+        para colar no emissor oficial. Esses dados preparados não são salvos nem
+        enviados a lugar nenhum pelo aplicativo.
+      </li>
+      <li>
+        <strong>Emissor oficial:</strong> o MEI em Dia pode abrir o emissor oficial da
+        NFS-e (<code>https://www.nfse.gov.br/EmissorNacional</code>) no navegador
+        externo do seu aparelho. A partir daí, você interage diretamente com o ambiente
+        oficial, e o tratamento dos dados segue as regras e a política de privacidade
+        desse ambiente, que não é controlado pelo MEI em Dia. O aplicativo não envia
+        seus dados ao portal ao abri-lo.
+      </li>
+      <li>
+        <strong>Credenciais:</strong> o MEI em Dia não solicita nem armazena sua senha
+        gov.br, não armazena certificado digital, não intercepta credenciais e não
+        acessa o conteúdo autenticado do portal.
+      </li>
+      <li>
+        <strong>Registro da nota emitida:</strong> depois de emitir no ambiente oficial,
+        você pode registrar no aplicativo as informações da nota (seção 3). O registro
+        é informado por você: o aplicativo não consulta nem confere a nota no ambiente
+        oficial. Você pode editar um registro e marcá-lo como cancelado — o
+        cancelamento da nota em si é feito no ambiente oficial; no aplicativo, muda
+        apenas o registro local. Nesta versão, os registros de notas não são excluídos
+        individualmente; eles são apagados junto com os demais dados locais ao excluir
+        a conta ou desinstalar o aplicativo.
+      </li>
+    </ul>
+  </section>
+
   <section id="assistente">
-    <h2>7. Meu Assistente</h2>
+    <h2>8. Meu Assistente</h2>
     <p>
       O Meu Assistente responde perguntas sobre os dados já existentes no seu
       aparelho (por exemplo, "quanto eu ganhei este mês?"). Ele funciona inteiramente
@@ -413,21 +492,22 @@
   </section>
 
   <section id="nao-fazemos">
-    <h2>8. O que o MEI em Dia não faz</h2>
+    <h2>9. O que o MEI em Dia não faz</h2>
     <ul>
       <li>não usa os dados da sua conta de e-mail/senha para nenhuma finalidade além de controlar o acesso ao aplicativo;</li>
       <li>não sincroniza os dados do seu negócio entre aparelhos ou com a nuvem;</li>
-      <li>não usa Firestore, Realtime Database, banco de dados remoto ou backend próprio para os dados do negócio — o único uso de Firebase é a autenticação de conta descrita na seção 2;</li>
+      <li>não envia os dados do seu negócio para nenhum servidor — o Firebase é usado apenas para a conta (seção 2) e para o controle do período gratuito e do Premium Cortesia (seção 2.2);</li>
       <li>não contém analytics, rastreamento de comportamento ou identificadores de publicidade;</li>
       <li>não exibe anúncios;</li>
       <li>não compartilha nem vende seus dados pessoais ou comerciais a terceiros;</li>
       <li>não usa inteligência artificial generativa conectada à internet;</li>
+      <li>não emite, consulta nem cancela NFS-e em seu nome e não solicita nem armazena senha gov.br ou certificado digital (seção 7);</li>
       <li>não recebe, não processa e não armazena nenhum dado biométrico (seção 2.1) — o reconhecimento da digital/rosto é feito inteiramente pelo seu aparelho.</li>
     </ul>
   </section>
 
   <section id="permissoes">
-    <h2>9. Permissões do aparelho</h2>
+    <h2>10. Permissões do aparelho</h2>
     <p>
       O MEI em Dia não solicita permissões de câmera, microfone, localização,
       contatos ou armazenamento de mídia. A única permissão relacionada a segurança
@@ -435,20 +515,22 @@
       ID no iOS), solicitada apenas se e quando você ativa o desbloqueio por
       biometria (seção 2.1) — ela não dá ao aplicativo acesso a nenhum dado
       biométrico, apenas permite exibir a tela de confirmação do próprio sistema
-      operacional. A única integração externa além da autenticação (seção 2) é a
-      abertura do WhatsApp/navegador por ação explícita sua, descrita na seção 6.
+      operacional. As únicas integrações externas além da autenticação (seção 2) são
+      aberturas feitas por ação explícita sua: o WhatsApp/navegador para cobrança
+      (seção 6) e, no navegador externo, os portais oficiais do DAS (Portal do Simples
+      Nacional) e da NFS-e (seção 7).
     </p>
   </section>
 
   <section id="direitos">
-    <h2>10. Seus direitos</h2>
+    <h2>11. Seus direitos</h2>
     <ul>
       <li>
         <strong>Dados do negócio:</strong> como ficam no seu próprio aparelho, você
         pode a qualquer momento editar ou excluir clientes, movimentações,
         orçamentos e compromissos diretamente no aplicativo, respeitando as regras
-        de integridade descritas em cada módulo, ou apagar todos os dados
-        desinstalando o aplicativo.
+        de integridade descritas em cada módulo, editar os registros de NFS-e
+        (seção 7), ou apagar todos os dados desinstalando o aplicativo.
       </li>
       <li>
         <strong>Conta de acesso:</strong> você pode excluir sua conta de e-mail/senha
@@ -467,7 +549,7 @@
   </section>
 
   <section id="criancas">
-    <h2>11. Crianças</h2>
+    <h2>12. Crianças</h2>
     <p>
       O MEI em Dia é destinado a maiores de 18 anos que administram um pequeno
       negócio. O aplicativo não é direcionado a crianças e não coleta
@@ -476,7 +558,7 @@
   </section>
 
   <section id="alteracoes">
-    <h2>12. Alterações nesta política</h2>
+    <h2>13. Alterações nesta política</h2>
     <p>
       Esta política pode ser atualizada quando o aplicativo mudar de forma relevante
       para a privacidade (por exemplo, se um backup em nuvem opcional for adicionado
@@ -486,7 +568,7 @@
   </section>
 
   <section id="contato">
-    <h2>13. Contato</h2>
+    <h2>14. Contato</h2>
     <p>
       Dúvidas sobre esta política podem ser enviadas para
       <span class="placeholder">revisao.meiemdia@gmail.com</span>.
