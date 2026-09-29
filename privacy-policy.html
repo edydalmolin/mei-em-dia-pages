@@ -211,7 +211,7 @@
   <div class="header-inner">
     <p class="eyebrow">MEI em Dia</p>
     <h1>Política de Privacidade</h1>
-    <p class="updated">Última atualização: <span class="placeholder">28 de setembro de 2026</span></p>
+    <p class="updated">Última atualização: <span class="placeholder">29 de setembro de 2026</span></p>
   </div>
 </header>
 
@@ -220,9 +220,11 @@
   <div class="summary-card">
     <strong>Resumo em uma frase:</strong> os dados do seu negócio (clientes, financeiro,
     orçamentos, agenda, estoque, registros de notas fiscais e Meu MEI) ficam armazenados
-    somente no seu aparelho. O MEI em Dia
-    usa uma conta de e-mail e senha apenas para controlar o acesso ao aplicativo —
-    não existe nuvem própria e os dados do seu negócio nunca são enviados ao desenvolvedor.
+    no seu aparelho. A exceção são os recibos que você emite: eles ficam salvos na sua
+    conta, na nuvem (Cloud Firestore), para que você os acesse também no site
+    meiemdia.app.br. O MEI em Dia usa uma conta de e-mail e senha para controlar o
+    acesso ao aplicativo e guardar seus recibos; não usa seus dados para publicidade e
+    não os vende nem compartilha.
   </div>
 
   <nav class="toc" aria-label="Sumário">
@@ -261,8 +263,8 @@
     <p>
       O MEI em Dia exige uma conta para uso, criada com e-mail e senha por meio do
       <strong>Firebase Authentication</strong> (serviço do Google). Essa conta serve
-      <strong>somente</strong> para controlar quem pode abrir o aplicativo — ela não
-      está conectada aos dados do seu negócio.
+      para controlar quem pode abrir o aplicativo e para guardar os seus recibos
+      (seção 2.3); os demais dados do seu negócio não ficam ligados a ela.
     </p>
     <ul>
       <li>
@@ -273,28 +275,35 @@
         desenvolvedor.
       </li>
       <li>
-        Os dados do seu negócio nunca vão para a nuvem: não existe sincronização,
-        backup em nuvem ou cópia dos dados do seu negócio fora do seu aparelho. O
-        único dado guardado em servidor além da conta é o controle de acesso descrito
-        na seção 2.2 (datas do período gratuito e, se houver, o Premium Cortesia).
+        Com exceção dos recibos (seção 2.3), os dados do seu negócio não vão para a
+        nuvem: não existe sincronização nem backup em nuvem de clientes, financeiro,
+        agenda, orçamentos, estoque, notas fiscais ou Meu MEI. Além da conta e dos
+        recibos, o único dado guardado em servidor é o controle de acesso descrito na
+        seção 2.2 (datas do período gratuito e, se houver, o Premium Cortesia).
       </li>
       <li>
-        O único vínculo entre a conta e o aparelho é técnico: um identificador de
-        sessão mantido pelo SDK do Firebase Authentication, necessário para manter
-        você conectado. Nenhum dado do negócio (clientes, financeiro, agenda,
-        orçamentos, Meu MEI) é associado, replicado ou enviado à sua conta.
+        O vínculo entre a conta e o aparelho é técnico: um identificador de sessão
+        mantido pelo SDK do Firebase Authentication, necessário para manter você
+        conectado. Dos dados do negócio, somente os recibos ficam associados à sua
+        conta; clientes, financeiro, agenda, orçamentos e Meu MEI não são
+        associados, replicados nem enviados a ela.
       </li>
       <li>
         Você pode excluir sua conta a qualquer momento diretamente no aplicativo, em
         <strong>Meu MEI → Configurações → Conta e segurança → Excluir conta</strong>.
-        Excluir a conta remove seu acesso de login junto ao Firebase Authentication
-        e, em seguida, apaga os dados do seu negócio salvos neste aparelho para essa
-        conta, incluindo a imagem da logo do negócio associada a ela. Preferências
+        Excluir a conta apaga primeiro todos os recibos salvos na sua conta (no app
+        e no site); em seguida, remove seu acesso de login junto ao Firebase
+        Authentication e apaga os dados do seu negócio salvos neste aparelho para
+        essa conta, incluindo a imagem da logo do negócio associada a ela. Se não for
+        possível apagar os recibos (por exemplo, sem internet), a conta
+        <strong>não</strong> é excluída e você pode tentar novamente. Preferências
         do próprio aparelho (como a opção de desbloqueio) podem permanecer até você
-        desinstalar o aplicativo ou apagar os dados dele. Os registros mínimos de
-        acesso no Cloud Firestore (seção 2.2) são mantidos: o do período gratuito,
-        para que o período não seja reiniciado, e, se existir, o do Premium
-        Cortesia. Excluir a conta não cancela uma assinatura feita pela loja — o
+        desinstalar o aplicativo ou apagar os dados dele. São mantidos no Cloud
+        Firestore: os registros mínimos de acesso (seção 2.2) — o do período
+        gratuito, para que o período não seja reiniciado, e, se existir, o do
+        Premium Cortesia — e um contador técnico da numeração dos recibos (ano e
+        último número usado, sem dados pessoais), para que números já usados nunca
+        se repitam. Excluir a conta não cancela uma assinatura feita pela loja — o
         cancelamento é feito no Google Play ou na App Store (seção 5).
       </li>
       <li>Sair da conta (logout) também não afeta os dados locais do seu negócio.</li>
@@ -350,6 +359,60 @@
       você (a sua conta) pode ler o seu registro; o aplicativo não pode alterar as
       datas nem conceder o Premium Cortesia a si mesmo.
     </p>
+
+    <h3 id="recibos">2.3 Recibos</h3>
+    <p>
+      Quando você emite um recibo, o MEI em Dia salva no <strong>Cloud Firestore</strong>
+      (serviço do Google, no mesmo projeto do Firebase Authentication), vinculado ao
+      identificador da sua conta (UID), o que você preencheu nele:
+    </p>
+    <ul>
+      <li><strong>de quem recebeu (você ou seu negócio):</strong> nome ou razão social, CPF ou CNPJ, nome fantasia, telefone e logo (imagem);</li>
+      <li><strong>de quem pagou:</strong> nome ou razão social, CPF ou CNPJ e telefone;</li>
+      <li><strong>do pagamento:</strong> valor, referência ("referente a"), forma de pagamento, observações, data do pagamento e cidade;</li>
+      <li><strong>assinatura:</strong> a assinatura desenhada por você (imagem) e o nome do responsável;</li>
+      <li><strong>controle:</strong> número do recibo, situação (ativo ou cancelado) e as datas de criação e de alteração, definidas pelo servidor.</li>
+    </ul>
+    <p>
+      Também é guardado, por ano, um contador da numeração (ano, último número usado e
+      data da atualização), sem dados pessoais.
+    </p>
+    <ul>
+      <li>
+        <strong>Finalidade:</strong> somente a funcionalidade de Recibos — emitir,
+        numerar sem repetição, guardar e permitir que você consulte, compartilhe,
+        cancele, duplique ou exclua seus recibos no aplicativo e no site
+        meiemdia.app.br. Esses dados não são usados para publicidade nem para
+        qualquer outra finalidade, e não são vendidos nem compartilhados.
+      </li>
+      <li>
+        <strong>Onde ficam:</strong> no Cloud Firestore, com armazenamento na região
+        <code>southamerica-east1</code> (São Paulo, Brasil). A comunicação entre o
+        aplicativo (ou o site) e o Firebase é criptografada em trânsito.
+      </li>
+      <li>
+        <strong>Quem acessa:</strong> somente a sua conta, autenticada, pode ler,
+        criar, alterar a situação ou excluir os seus recibos — regra aplicada pelo
+        próprio servidor. O desenvolvedor não consulta o conteúdo dos seus recibos.
+      </li>
+      <li>
+        <strong>Dados de terceiros:</strong> o recibo pode conter dados de quem pagou
+        (por exemplo, seu cliente), inseridos por você. Informe apenas o necessário
+        para o recibo; você é responsável por ter base legal para tratar esses dados.
+      </li>
+      <li>
+        <strong>Exclusão e retenção:</strong> cada recibo fica salvo até você
+        excluí-lo (no aplicativo ou no site) ou excluir sua conta, o que apaga todos
+        eles. Recibos excluídos não podem ser recuperados, e seus números não são
+        reutilizados. Recibos emitidos não podem ser editados: você pode
+        cancelá-los, reativá-los ou excluí-los.
+      </li>
+      <li>
+        <strong>Conexão:</strong> emitir um recibo exige internet. O PDF do recibo é
+        gerado no aparelho e só sai dele quando você o compartilha (por exemplo, pelo
+        WhatsApp ou e-mail), por escolha sua.
+      </li>
+    </ul>
   </section>
 
   <section id="dados-locais">
@@ -385,14 +448,15 @@
       não tem acesso a esses dados, não os recebe em nenhum servidor e não pode
       consultá-los remotamente. Esses dados <strong>não</strong> têm relação com sua
       conta de e-mail/senha: eles não são associados ao seu identificador de conta
-      nem enviados ao Firebase.
+      nem enviados ao Firebase. Os recibos são a exceção, descrita na seção 2.3.
     </p>
   </section>
 
   <section id="desinstalacao">
     <h2>4. Desinstalação, troca ou perda do aparelho</h2>
     <div class="note">
-      <strong>Não existe backup automático em nuvem para os dados do seu negócio.</strong>
+      <strong>Não existe backup automático em nuvem para os dados do seu negócio</strong>
+      (os recibos, salvos na sua conta, são a exceção — seção 2.3).
       Se você desinstalar o aplicativo, formatar o aparelho, perdê-lo ou trocá-lo sem
       transferir os dados manualmente, os registros do seu negócio podem ser perdidos
       de forma definitiva.
@@ -401,8 +465,8 @@
       Sua conta de e-mail/senha, por outro lado, é mantida pelo Firebase
       Authentication e não depende do aparelho: reinstalar o aplicativo em outro
       aparelho e entrar novamente com o mesmo e-mail e senha recupera o acesso à
-      conta, mas <strong>não</strong> recupera os dados do negócio, que permanecem
-      apenas no aparelho original.
+      conta e aos seus recibos, mas <strong>não</strong> recupera os demais dados do
+      negócio, que permanecem apenas no aparelho original.
     </p>
   </section>
 
@@ -499,9 +563,8 @@
   <section id="nao-fazemos">
     <h2>9. O que o MEI em Dia não faz</h2>
     <ul>
-      <li>não usa os dados da sua conta de e-mail/senha para nenhuma finalidade além de controlar o acesso ao aplicativo;</li>
-      <li>não sincroniza os dados do seu negócio entre aparelhos ou com a nuvem;</li>
-      <li>não envia os dados do seu negócio para nenhum servidor — o Firebase é usado apenas para a conta (seção 2) e para o controle do período gratuito e do Premium Cortesia (seção 2.2);</li>
+      <li>não usa os dados da sua conta de e-mail/senha para nenhuma finalidade além de controlar o acesso ao aplicativo e guardar seus recibos;</li>
+      <li>não sincroniza com a nuvem os dados do seu negócio além dos recibos — o Firebase é usado apenas para a conta (seção 2), para o controle do período gratuito e do Premium Cortesia (seção 2.2) e para os recibos (seção 2.3);</li>
       <li>não contém analytics, rastreamento de comportamento ou identificadores de publicidade;</li>
       <li>não exibe anúncios;</li>
       <li>não compartilha nem vende seus dados pessoais ou comerciais a terceiros;</li>
@@ -531,6 +594,10 @@
     <h2>11. Seus direitos</h2>
     <ul>
       <li>
+        <strong>Recibos:</strong> você pode cancelar, reativar ou excluir cada recibo
+        no aplicativo ou no site, e excluir a conta apaga todos eles (seção 2.3).
+      </li>
+      <li>
         <strong>Dados do negócio:</strong> como ficam no seu próprio aparelho, você
         pode a qualquer momento editar ou excluir clientes, movimentações,
         orçamentos e compromissos diretamente no aplicativo, respeitando as regras
@@ -546,8 +613,9 @@
       </li>
     </ul>
     <p>
-      Como o desenvolvedor não recebe nem armazena os dados do seu negócio, não há
-      um pedido de exclusão a ser feito a nós além do descrito acima — a exceção é
+      Como o desenvolvedor não recebe os dados do seu negócio, e os recibos guardados
+      na sua conta podem ser excluídos por você mesmo, não há um pedido de exclusão a
+      ser feito a nós além do descrito acima — a exceção é
       qualquer dado de pagamento, cuja exclusão deve ser solicitada diretamente ao
       Google Play ou à Apple, conforme a loja usada.
     </p>

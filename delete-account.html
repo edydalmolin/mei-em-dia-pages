@@ -171,19 +171,21 @@
   <div class="header-inner">
     <p class="eyebrow">MEI em Dia</p>
     <h1>Exclusão de Conta</h1>
-    <p class="updated">Última atualização: 28 de setembro de 2026</p>
+    <p class="updated">Última atualização: 29 de setembro de 2026</p>
   </div>
 </header>
 
 <main>
 
   <div class="summary-card">
-    <strong>Resumo em uma frase:</strong> ao excluir a conta pelo aplicativo, sua
-    conta de acesso (e-mail e senha) é removida do Firebase Authentication e os
-    dados do seu negócio salvos neste aparelho são apagados; pelo e-mail, é
-    removida apenas a conta de acesso. Os dados do negócio ficam somente no
-    aparelho — no servidor existem apenas a conta de acesso e registros mínimos de
-    acesso (período gratuito e, se houver, Premium Cortesia), que são mantidos.
+    <strong>Resumo em uma frase:</strong> ao excluir a conta pelo aplicativo, os
+    recibos salvos na sua conta são apagados, sua conta de acesso (e-mail e senha)
+    é removida do Firebase Authentication e os dados do seu negócio salvos neste
+    aparelho são apagados; pelo e-mail, são removidos os recibos e a conta de
+    acesso. Os demais dados do negócio ficam somente no aparelho. No servidor
+    permanecem apenas registros mínimos, sem dados do seu negócio: o do período
+    gratuito, o do Premium Cortesia (se houver) e um contador técnico da numeração
+    dos recibos.
   </div>
 
   <section id="excluir-no-app">
@@ -203,6 +205,14 @@
     <p>Ao confirmar, nesta ordem:</p>
     <ol>
       <li>
+        o aplicativo confirma que o seu login é recente (medida de segurança do
+        Firebase para ações definitivas);
+      </li>
+      <li>
+        todos os recibos salvos na sua conta são apagados do Cloud Firestore —
+        eles deixam de aparecer no aplicativo e no site meiemdia.app.br;
+      </li>
+      <li>
         sua conta de acesso (e-mail e senha) é excluída permanentemente do
         Firebase Authentication, o serviço usado pelo MEI em Dia para
         autenticação;
@@ -220,8 +230,10 @@
     <div class="note">
       <strong>Importante:</strong> se o sistema pedir que você entre novamente
       antes de excluir (medida de segurança do Firebase para sessões antigas),
-      nada é excluído — nem a conta, nem os dados do aparelho. Entre de novo e
-      repita a exclusão.
+      nada é excluído — nem os recibos, nem a conta, nem os dados do aparelho.
+      Entre de novo e repita a exclusão. Da mesma forma, se não for possível
+      apagar os recibos (por exemplo, sem internet), a conta
+      <strong>não</strong> é excluída; tente novamente com conexão.
     </div>
     <p>
       Depois de excluída, não é possível entrar novamente com esse e-mail sem
@@ -248,14 +260,15 @@
       qual conta deve ser excluída.
     </div>
     <p>
-      Ao receber a solicitação, o desenvolvedor exclui manualmente a sua conta de
-      acesso junto ao Firebase Authentication, associada ao e-mail informado.
+      Ao receber a solicitação, o desenvolvedor localiza a conta associada ao
+      e-mail informado, apaga primeiro os recibos salvos nessa conta e, em
+      seguida, exclui a conta de acesso junto ao Firebase Authentication.
     </p>
     <p>
       <strong>A diferença em relação à exclusão pelo aplicativo:</strong> pelo
-      e-mail, o desenvolvedor não tem como apagar os dados do seu negócio, porque
-      eles existem apenas no seu aparelho e o desenvolvedor nunca teve acesso a
-      eles. Para removê-los, siga a seção 4. Os registros mínimos de acesso
+      e-mail, o desenvolvedor não tem como apagar os demais dados do seu negócio,
+      porque eles existem apenas no seu aparelho e o desenvolvedor nunca teve
+      acesso a eles. Para removê-los, siga a seção 4. Os registros mínimos
       descritos na seção 3 são tratados da mesma forma nos dois casos.
     </p>
   </section>
@@ -264,14 +277,18 @@
     <h2>3. O que é excluído e o que é mantido</h2>
     <ul>
       <li>
-        <strong>Excluído (pelo aplicativo ou por e-mail):</strong> sua conta de
-        acesso (e-mail e senha) no Firebase Authentication, usada apenas para
-        controlar o login no aplicativo.
+        <strong>Excluído (pelo aplicativo ou por e-mail):</strong> todos os
+        recibos salvos na sua conta no Cloud Firestore (dados de quem recebeu e de
+        quem pagou, valores, descrições, assinatura e logo) e sua conta de acesso
+        (e-mail e senha) no Firebase Authentication. Recibos excluídos não podem
+        ser recuperados. Você também pode excluir recibos individualmente, a
+        qualquer momento, no aplicativo ou no site.
       </li>
       <li>
         <strong>Excluído somente pela exclusão no aplicativo, e somente no
         aparelho usado:</strong> os dados do seu negócio salvos localmente
-        (seção 1). Esses dados nunca são enviados a servidores do MEI em Dia.
+        (seção 1). Com exceção dos recibos, esses dados nunca são enviados a
+        servidores do MEI em Dia.
       </li>
       <li>
         <strong>Mantido no Cloud Firestore:</strong> os registros mínimos de
@@ -282,6 +299,12 @@
         do seu negócio, e-mail, cartão ou dados de pagamento. O aplicativo não
         tem permissão para apagá-los: o registro do período gratuito é mantido
         de propósito, para que o período não possa ser reiniciado.
+      </li>
+      <li>
+        <strong>Mantido no Cloud Firestore:</strong> um contador técnico da
+        numeração dos recibos, por ano (o ano, o último número usado e a data da
+        última atualização). Ele não contém dados pessoais nem dados dos recibos e
+        existe para que números de recibo já usados nunca se repitam.
       </li>
       <li>
         <strong>Assinatura:</strong> excluir a conta não cancela uma assinatura
@@ -310,8 +333,10 @@
     <p>
       Qualquer uma dessas ações remove permanentemente os dados do aplicativo
       salvos naquele aparelho. Essa remoção não pode ser desfeita pelo
-      desenvolvedor, já que os dados do negócio nunca são enviados a servidores
-      do MEI em Dia e não existe backup em nuvem deles.
+      desenvolvedor, já que esses dados do negócio nunca são enviados a
+      servidores do MEI em Dia e não existe backup em nuvem deles. Os recibos,
+      que ficam na sua conta, são apagados pela exclusão da conta (seções 1 e
+      2).
     </p>
   </section>
 
@@ -327,7 +352,7 @@
 
 <footer>
   <p>Desenvolvedor: Edvaldo Dalmolin</p>
-  <p>Última atualização: 28 de setembro de 2026</p>
+  <p>Última atualização: 29 de setembro de 2026</p>
 </footer>
 
 </body>
